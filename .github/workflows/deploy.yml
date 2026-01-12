@@ -1,7 +1,19 @@
-name: CI/CD Pipeline with CodeDeploy
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+  workflow_dispatch:  # Manual trigger button
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Demo step
+        run: echo "Workflow triggered successfully!"
